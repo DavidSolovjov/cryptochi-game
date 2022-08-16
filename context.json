@@ -1,0 +1,7 @@
+{
+  "watch": {
+    "less": true,
+    "webpack": true
+  }
+
+}

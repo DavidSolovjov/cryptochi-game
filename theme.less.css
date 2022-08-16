@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+#loading_overlay {
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  transition: 1s;
+}
+#loading_overlay div.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 43px;
+}
+#loading_overlay div.progress-bar div.progress-text {
+  color: #FFF;
+  font-family: Arial;
+  font-size: 16px;
+  height: 20px;
+  padding-left: 10px;
+}
+#loading_overlay div.progress-bar div.progress-indicator {
+  width: 0%;
+  height: calc(100% - 20px);
+  background-color: #FFF;
+}
+#loading_overlay.hide {
+  opacity: 0;
+}

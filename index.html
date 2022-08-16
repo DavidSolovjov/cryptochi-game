@@ -1,0 +1,27 @@
+﻿<!doctype html>
+
+<html lang="en">
+  <head>
+
+    
+    <link rel="stylesheet" href="theme.less.css">
+  </head>
+  <body>
+    <div id="loading_overlay">
+      <img src="logo.svg">
+      <div class="progress-bar">
+        <div class="progress-text"></div>
+        <div class="progress-indicator">
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Browsers with ES module support load this file. -->
+    <script type="module" src="main.js"></script>
+
+    <!-- Older browsers load this file (and module-supporting -->
+    <!-- browsers know *not* to load this file). -->
+    <script nomodule src="main.es5.js"></script>
+  </body>
+</html>
