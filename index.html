@@ -2,8 +2,9 @@
 
 <html lang="en">
   <head>
-
-    
+    <script src="lib/web3.min.js"></script>
+    <script src="lib/web3-provider.min.js"></script>
+    <script src="lib/moralis.js"></script>
     <link rel="stylesheet" href="theme.less.css">
   </head>
   <body>
@@ -11,11 +12,56 @@
       <img src="logo.svg">
       <div class="progress-bar">
         <div class="progress-text"></div>
-        <div class="progress-indicator">
+          <div class="progress-indicator">
+          </div>
         </div>
       </div>
     </div>
+
+    <div id="wallet-info"></div>
+    
+    <div class="btn-container">
+      <button id="btn-logout" class="btn-login">
+        Logout
+      </button>
+      <button id="btn-auth" class="btn-login">
+        Login
+      </button>
+      <button class="btn-inventory" onclick="onBtnInventoryClick()">
+        <img src="assets/images/inventory-icon.png" class="btn-inventory-image"/>
+      </button>
     </div>
+    <div id="modal-inventory" class="modal-inventory">
+      <div class="modal-container">
+        <div class="modal-header">
+          <span>INVENTORY</span>
+        </div>
+        <div class="wrapper">
+          <div class="left">
+            <div class="col-header">
+              <span>
+                WEAPONS
+              </span>
+            </div>
+            <div id="inventory-left-container" class="column-container">
+            </div>
+          </div>
+          <div class="right">
+            <div class="col-header">
+              <span>
+                BODY
+              </span>
+            </div>
+            <div id="inventory-right-container"  class="column-container">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Web3 script-->
+    <script type="module" src="web3/script.js"></script>
 
     <!-- Browsers with ES module support load this file. -->
     <script type="module" src="main.js"></script>
@@ -23,5 +69,37 @@
     <!-- Older browsers load this file (and module-supporting -->
     <!-- browsers know *not* to load this file). -->
     <script nomodule src="main.es5.js"></script>
+
+    <script>
+      const numOfButton = 10
+      let buttonItemInventory = document.createElement('button');
+      buttonItemInventory.classList.add('btn-inventory-item')
+
+      const inventoryContainerLeft = document.querySelector('#inventory-left-container')
+      if(inventoryContainerLeft){
+        for(let i = 0; i < numOfButton; i++){
+          const buttonClone = buttonItemInventory.cloneNode(true);
+          inventoryContainerLeft.appendChild(buttonClone)
+        }
+      }
+
+      const inventoryContainerRight = document.querySelector('#inventory-right-container')
+      if(inventoryContainerRight){
+        for(let i = 0; i < numOfButton; i++){
+          const buttonClone = buttonItemInventory.cloneNode(true);
+          inventoryContainerRight.appendChild(buttonClone)
+        }
+      }
+
+      function onBtnInventoryClick() {
+        console.log('onBtnInventoryClick')
+        const modal = document.querySelector('#modal-inventory')
+        if(modal.classList.contains('open')){
+          modal.classList.remove('open')
+        } else {
+          modal.classList.add('open')
+        }
+      }
+    </script>
   </body>
 </html>

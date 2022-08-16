@@ -65327,10 +65327,24 @@ document.addEventListener('keyup', e => {
       WASD.d = false;
       ANIMATE_CHARACTER("idle");
       break;
+    case 69:
+      onBtnInventoryClick()
+      break;
 
     default:
   }
 });
+
+function onBtnInventoryClick() {
+  console.log('onBtnInventoryClick')
+  const modal = document.querySelector('#modal-inventory')
+  if(modal.classList.contains('open')){
+    modal.classList.remove('open')
+  } else {
+    modal.classList.add('open')
+  }
+}
+
 var normalHelper = undefined;
 
 if (DEBUG_MODE) {
