@@ -65115,16 +65115,12 @@ var one_deg = Math.PI / 180; // ---------------
 //
 
 
-
-
-
-
-
-
 var loading_overlay = document.getElementById("loading_overlay");
 var loading_indicator = loading_overlay.querySelector("div.progress-bar div.progress-indicator");
 var loading_text = loading_overlay.querySelector("div.progress-bar div.progress-text");
 var lmanager = new three__WEBPACK_IMPORTED_MODULE_4__.LoadingManager();
+
+const connectInfo = document.getElementById('wallet-info')
 
 lmanager.onProgress = function (url, itemsLoaded, itemsTotal) {
   loading_indicator.style.width = Math.round(itemsLoaded / itemsTotal * 100) + "%";
@@ -65132,14 +65128,47 @@ lmanager.onProgress = function (url, itemsLoaded, itemsTotal) {
 };
 
 var LOADING = true;
+let account;
 
 lmanager.onLoad = function () {
   LOADING = false;
-  loading_overlay.classList.add("hide");
-  setTimeout(() => {
-    loading_overlay.style.display = "none";
-  }, 2000);
+  requestAccount().then(data => {
+    loading_overlay.classList.add("hide");
+    setTimeout(() => {
+      loading_overlay.style.display = "none";
+    }, 2000);
+  })
+  
 };
+
+function requestAccount(){
+    return new Promise((resolve, reject) => {
+        ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
+            account = accounts[0];
+            connectInfo.style.display = 'inline-block'
+            connectInfo.innerText = account
+            console.log('requestAccount', account)
+
+            if (typeof window.ethereum !== 'undefined') {
+                console.log('MetaMask is installed!');
+            } else {
+                connectInfo.style.display = 'inline-block'
+                connectInfo.innerText = "Bạn cần cài đặt tiện ích Ethereum để khởi chạy ứng dụng"
+                reject()
+            }
+    
+            ethereum.request({method: 'eth_getBalance' , params: [account, 'latest']}).then(result => {
+                console.log('eth_getBalance', result);
+                resolve()
+            });
+    
+        }).catch(err => {
+            connectInfo.style.display = 'none'
+            reject()
+        });
+    })
+    
+}
 
 lmanager.onError = function (url) {
   loading_text.innerText = 'Error: ' + url;

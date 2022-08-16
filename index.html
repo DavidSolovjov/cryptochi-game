@@ -2,9 +2,6 @@
 
 <html lang="en">
   <head>
-    <script src="lib/web3.min.js"></script>
-    <script src="lib/web3-provider.min.js"></script>
-    <script src="lib/moralis.js"></script>
     <link rel="stylesheet" href="theme.less.css">
   </head>
   <body>
@@ -21,12 +18,12 @@
     <div id="wallet-info"></div>
     
     <div class="btn-container">
-      <button id="btn-logout" class="btn-login">
+      <!-- <button id="btn-logout" class="btn-login">
         Logout
       </button>
       <button id="btn-auth" class="btn-login">
         Login
-      </button>
+      </button> -->
       <button class="btn-inventory" onclick="onBtnInventoryClick()">
         <img src="assets/images/inventory-icon.png" class="btn-inventory-image"/>
       </button>
@@ -59,9 +56,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Web3 script-->
-    <script type="module" src="web3/script.js"></script>
 
     <!-- Browsers with ES module support load this file. -->
     <script type="module" src="main.js"></script>

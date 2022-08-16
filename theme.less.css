@@ -16,7 +16,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 12000;
   transition: 1s;
 }
 #loading_overlay div.progress-bar {
@@ -52,7 +52,8 @@ body {
   padding: 1rem;
   background: #fff;
   border-radius: 20px;
-
+  z-index: 13000;
+  display: none;
 }
 .btn-inventory{
   /* position: absolute;
